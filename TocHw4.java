@@ -1,4 +1,10 @@
-package testre;
+/*
+* 姓名：黃奕璁
+* 學號：F74002191
+*
+* 程式執行方式： java -jar TocHw4.jar URL
+* 輸出結果： 找出那一路的成交值的最大值和最小值
+*/
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -88,15 +94,14 @@ public class TocHw4 {
 			}
 			for(i = 0; i < find_road.size(); i++){
 				String index[] = roadName_index.get(find_road.get(i)).split(" ");
-				int price_max = 0, price_min = 0;
+				int price_max, price_min;
+				price_max = array.getJSONObject(Integer.valueOf(index[0])).getInt("總價元");
+				price_min = array.getJSONObject(Integer.valueOf(index[0])).getInt("總價元");
 				for(int j = 0; j < index.length; j++){
 					if(array.getJSONObject(Integer.valueOf(index[j])).getInt("總價元") > price_max){
 						price_max = array.getJSONObject(Integer.valueOf(index[j])).getInt("總價元");
 					}
-				}
-				price_min = price_max;
-				for(int j = 0; j < index.length; j++){
-					if(array.getJSONObject(Integer.valueOf(index[j])).getInt("總價元") < price_min){
+					else if(array.getJSONObject(Integer.valueOf(index[j])).getInt("總價元") < price_min){
 						price_min = array.getJSONObject(Integer.valueOf(index[j])).getInt("總價元");
 					}
 				}
