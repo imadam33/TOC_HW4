@@ -107,8 +107,24 @@ public class TocHw4 {
 			
 			//找有哪幾條路的交易筆數等於最大值
 			for(String road:roadName_count.keySet()){
-				if(roadName_count.get(road) == max_count)
-					find_road.add(road);
+				if(roadName_count.get(road) == max_count){
+					String index[] = roadName_index.get(road).split(" ");
+				
+					if(find_road.size() == 0)
+						find_road.add(road);
+					//路名在資料的順序
+					else{
+						for(i = 0; i < find_road.size(); i++){
+							String index_temp[] = roadName_index.get(find_road.get(i)).split(" ");
+							if(Integer.valueOf(index[0]) < Integer.valueOf(index_temp[0])){
+								find_road.add(i, road);
+								break;
+							}
+						}
+						if(i == find_road.size())
+							find_road.add(road);
+					}
+				}
 			}
 			
 			//找路的最高交易價和最低交易價
